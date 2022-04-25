@@ -25,7 +25,7 @@ servers:
     variables:
       tenant:
         default: www
-        description: Your tenant id
+        description: Your tenant ids
   - url:  'http://localhost:3123/'
 paths:
   '/users/{username}':
