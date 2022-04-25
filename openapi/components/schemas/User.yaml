@@ -4,7 +4,7 @@ properties:
     description: User supplied username
     type: string
     minLength: 4
-    example: ADam 77
+    example:change 77
   firstName:
     description: User first name
     type: string
