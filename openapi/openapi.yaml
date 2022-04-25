@@ -26,7 +26,7 @@ servers:
       tenant:
         default: www
         description: Your tenant id
-  - url:  'http://localhost:3123/'
+  - url:  'http://localhost:3123'
 paths:
   '/users/{username}':
     $ref: 'paths/users_{username}.yaml'
