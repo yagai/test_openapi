@@ -35,3 +35,8 @@ implementation logic. Similar to what
 
 interfaces have done for lower-level programming, OpenAPI removes the
 guesswork in calling the service.
+
+
+## To colaborate with Squad 5 please contact with
+
+Test@gft.com
