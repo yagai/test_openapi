@@ -37,6 +37,6 @@ interfaces have done for lower-level programming, OpenAPI removes the
 guesswork in calling the service.
 
 
-## To colaborate with Squad 5 please contact with
+# To colaborate with Squad 5 please contact with
 
 Test@gft.com
