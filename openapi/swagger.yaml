@@ -1,0 +1,634 @@
+swagger: '2.0'
+info:
+  description: This is an API for Kashyyyk National Bank
+  version: 1.0.1
+  title: Kashyyyk National Bank API
+host: opj5g6owp1.execute-api.eu-west-2.amazonaws.com
+basePath: /beta
+tags:
+  - name: account
+    description: Access to account in application
+  - name: reports
+    description: Everything about your reports
+  - name: projects
+    description: Everything about your project
+  - name: tasks
+    description: Everything about your tasks
+schemes:
+  - https
+paths:
+  /api/v1/accounts:
+    get:
+      tags:
+        - accounts
+      summary: Get all accounts by accountsCode
+      operationId: getAccounts
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: pageNo
+          in: query
+          description: pageNo
+          required: false
+          type: string
+        - name: pageSize
+          in: query
+          description: pageSize
+          required: false
+          type: string
+        - name: accountsCode
+          in: query
+          description: accountsCode.
+          required: false
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/ArrayOfaccountsResponseDto'
+    post:
+      tags:
+        - accounts
+      summary: Add accounts
+      operationId: addAccounts
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: accountsDto
+          required: true
+          schema:
+            $ref: '#/definitions/accountsDto'
+      responses:
+        '201':
+          description: accounts created successfully
+          schema:
+            $ref: '#/definitions/accountsResponseDto'
+  /api/v1/accounts/{id}:
+    put:
+      tags:
+        - accounts
+      summary: Update accounts
+      operationId: updateAccounts
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          type: string
+        - in: body
+          name: accountsDto
+          required: true
+          schema:
+            $ref: '#/definitions/accountsDto'
+      responses:
+        '200':
+          description: accounts updated successfully
+          schema:
+            $ref: '#/definitions/accountsResponseDto'
+    delete:
+      tags:
+        - accounts
+      summary: Delete accounts
+      operationId: deleteAccounts
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          type: string
+      responses:
+        '200':
+          description: accounts deleted successfully
+  /api/v1/authenticate:
+    post:
+      tags:
+        - token
+      summary: Add token
+      operationId: token
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: TokenRequest
+          required: true
+          schema:
+            $ref: '#/definitions/TokenRequest'
+      responses:
+        '201':
+          description: Token created successfully
+          schema:
+            $ref: '#/definitions/TokenDto'
+  /api/v1/cards:
+    get:
+      tags:
+        - Cards
+      summary: Get all time table
+      operationId: getCard
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: cardCode
+          in: query
+          description: CardCode.
+          required: false
+          type: string
+        - name: startDate
+          in: query
+          required: false
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/ArrayOfCardDto'
+    post:
+      tags:
+        - Cards
+      summary: Add Cards
+      operationId: addCard
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: CardCode
+          in: query
+          description: CardCode.
+          required: false
+          type: string
+        - in: body
+          name: CardDto
+          required: true
+          schema:
+            $ref: '#/definitions/CardDto'
+      responses:
+        '201':
+          description: Card created successfully
+          schema:
+            $ref: '#/definitions/CardDto'
+  /api/v1/cards/{id}:
+    put:
+      tags:
+        - Cards
+      summary: Update Card
+      operationId: updateCard
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          type: string
+        - in: body
+          name: CardDto
+          required: true
+          schema:
+            $ref: '#/definitions/CardDto'
+      responses:
+        '200':
+          description: Card updated successfully
+          schema:
+            $ref: '#/definitions/CardDto'
+    delete:
+      tags:
+        - Cards
+      summary: Delete card
+      operationId: deleteCard
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Card deleted successfully
+  /api/v1/projects:
+    get:
+      tags:
+        - projects
+      summary: Get all projects
+      operationId: getProjects
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: accountsCode
+          in: query
+          description: accountsCode
+          required: false
+          type: string
+        - name: projectCode
+          in: query
+          description: ProjectCode.
+          required: false
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/ArrayOfProjectDto'
+    post:
+      tags:
+        - projects
+      summary: Add project
+      operationId: addProject
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: ProjectDto
+          required: true
+          schema:
+            $ref: '#/definitions/ProjectDto'
+      responses:
+        '201':
+          description: Project created successfully
+          schema:
+            $ref: '#/definitions/ProjectDto'
+  /api/v1/projects/{id}:
+    put:
+      tags:
+        - projects
+      summary: Update project
+      operationId: updateProject
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          type: string
+        - in: body
+          name: ProjectDto
+          required: true
+          schema:
+            $ref: '#/definitions/ProjectDto'
+      responses:
+        '200':
+          description: Project updated successfully
+          schema:
+            $ref: '#/definitions/ProjectDto'
+    delete:
+      tags:
+        - projects
+      summary: Delete project
+      operationId: deleteProject
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Project deleted successfully
+  /api/v1/tasks:
+    get:
+      tags:
+        - tasks
+      summary: Get all tasks
+      operationId: getTasks
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: taskCode
+          in: query
+          description: TaskCode.
+          required: false
+          type: string
+        - name: accountsCode
+          in: query
+          description: accountsCode.
+          required: false
+          type: string
+      responses:
+        '200':
+          description: Successful operation
+          schema:
+            $ref: '#/definitions/ArrayOfTaskDto'
+    post:
+      tags:
+        - tasks
+      summary: Add task
+      operationId: addTask
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: TaskDto
+          required: true
+          schema:
+            $ref: '#/definitions/TaskDto'
+      responses:
+        '201':
+          description: Task created successfully
+          schema:
+            $ref: '#/definitions/TaskDto'
+  /api/v1/tasks/{id}:
+    put:
+      tags:
+        - tasks
+      summary: Update task
+      operationId: updateTask
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          type: string
+        - in: body
+          name: TaskDto
+          required: true
+          schema:
+            $ref: '#/definitions/TaskDto'
+      responses:
+        '200':
+          description: Task updated successfully
+          schema:
+            $ref: '#/definitions/TaskDto'
+    delete:
+      tags:
+        - tasks
+      summary: Delete task
+      operationId: deleteTask
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: id
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Task deleted successfully
+definitions:
+  ProjectDto:
+    title: ProjectDto
+    type: object
+    required:
+      - projectCode
+    properties:
+      id:
+        type: string
+        format: uuid
+      projectCode:
+        type: string
+        pattern: ^[A-Za-z0-9]{4}$
+      projectName:
+        type: string
+      taskCodes:
+        type: array
+        items:
+          type: string
+  CardDto:
+    title: CardDto
+    type: object
+    required:
+      - CardCode
+      - accountsCode
+      - taskCode
+    properties:
+      id:
+        type: string
+        format: uuid
+      CardCode:
+        type: string
+        pattern: ^[A-Za-z0-9]{4}$
+      taskCode:
+        type: string
+        pattern: ^[A-Za-z0-9]{4}$
+      accountsCode:
+        type: string
+        pattern: ^[A-Za-z0-9]{4}$
+      CreatedDate:
+        type: string
+        format: date
+      Value:
+        type: integer
+        format: int32
+      message:
+        type: string
+  UserRole:
+    type: string
+    enum:
+      - MANAGER
+      - ACCOUNTS
+      - ADMIN
+      - API_USER
+  accountsDto:
+    type: object
+    required:
+      - firstName
+      - lastName
+      - mail
+      - role
+    properties:
+      id:
+        type: string
+        format: uuid
+      accountsCode:
+        type: string
+        pattern: ^[A-Za-z0-9]{4}$
+      mail:
+        type: string
+        pattern: ^[a-zA-Z0-9._%-]+@[a-zA-Z0-9._%-]+[.]+[a-zA-Z]{2,4}$
+      firstName:
+        type: string
+        pattern: ^[A-Za-z]{3,30}$
+      lastName:
+        type: string
+        pattern: ^[A-Za-z]{3,30}$
+      role:
+        $ref: '#/definitions/UserRole'
+      projects:
+        type: array
+        items:
+          type: string
+      password:
+        type: string
+        format: password
+  TokenRequest:
+    type: object
+    properties:
+      username:
+        type: string
+      password:
+        type: string
+  TokenDto:
+    type: object
+    properties:
+      token:
+        type: string
+  ArrayOfCardDto:
+    type: array
+    items:
+      $ref: '#/definitions/CardDto'
+  ArrayOfTaskDto:
+    title: ArrayOfTaskDto
+    type: array
+    items:
+      $ref: '#/definitions/TaskDto'
+  accountsResponseDto:
+    title: ArrayOfaccountsResponseDto
+    type: object
+    required:
+      - firstName
+      - lastName
+      - mail
+    properties:
+      id:
+        type: string
+        format: uuid
+      accountsCode:
+        type: string
+        pattern: ^[A-Za-z0-9]{4}$
+      mail:
+        type: string
+        pattern: ^[a-zA-Z0-9._%-]+@[a-zA-Z0-9._%-]+[.]+[a-zA-Z]{2,4}$
+      firstName:
+        type: string
+        pattern: ^[A-Za-z]{3,30}$
+      lastName:
+        type: string
+        pattern: ^[A-Za-z]{3,30}$
+      role:
+        type: string
+      projects:
+        type: array
+        items:
+          type: string
+  ArrayOfProjectDto:
+    title: ArrayOfCardDto
+    type: array
+    items:
+      $ref: '#/definitions/ProjectDto'
+  ArrayOfaccountsResponseDto:
+    title: ArrayOfaccountsResponseDto
+    type: array
+    items:
+      $ref: '#/definitions/accountsResponseDto'
+  TaskDto:
+    title: TaskDto
+    type: object
+    required:
+      - projectCode
+      - taskName
+    properties:
+      id:
+        type: string
+        format: uuid
+      taskCode:
+        type: string
+        pattern: ^[A-Za-z0-9]{4}$
+      taskName:
+        type: string
+      projectCode:
+        type: string
+x-cardData:
+  linkTo: ''
+  icon: https://d1nsv8xarmirgt.cloudfront.net/money-black.png
+  by: Wookie Government
+  label: New
+  thumbnail: https://d1nsv8xarmirgt.cloudfront.net/app-mockup-1.png
+  tags:
+    - Payments
+    - API
+    - Financing
+    - Accounts
+    - Identity
+    - Personal Data
+    - Cards
+  tileDesc: >
+    Kashyyk National Bank (KNB) allow regulated payment initiation service
+    providers (PISPs) to initiate a transfer of funds from a customer’s account
+    to third parties online with the account holder’s specific consent and
+    confirmation 
+x-authDescLinkBtnText: Read More
+x-productionLink: https://prodlink.co.il
+x-authDesc: >
+  in order to accses this API you will need QWAC and QSEAL certificates from
+  ISREAL BANK.
+
+  This api supports the PSD2 protocol.
+
+  In order to obtain  an accses token, we use the OAuth 2.0 Protocol Auth.
+
+  After user agreement an authorization code will be returned.
+
+  then from the authorization code a tpp can obtain the access token
+x-versionHistory:
+  - Version: v1
+    ReleaseDate: 31/08/2021
+    Description: Beta Release sandbox
+x-sandBoxLink: https://sandboxlink.co.il
+x-authDescLink: https://leumi.github.com/psd2/
+x-relatedResources:
+  - url: https://api.testbank.com/psd2
+    description: PSD2 server
+  - url: https://test-api.testbank.com/psd2
+    description: Optional PSD2 test server
+x-apiInformation:
+  - label: title
+    value: KNB API
+  - label: version
+    value: 31/08/2021
+  - label: protocol
+    value: https
+  - label: sandBoxLink
+    value: https://sandboxlink.co.il
+x-sandBoxData: |
+  # Sandbox data
+    
+  This API includes a Sandbox environment to test your applications.
+  For the sandbox environment to work, you need QWAC and QSAL certificates. 
+
+  data: 
+
+  PSUID1: 000000000
+  PSUID2: 000000001
