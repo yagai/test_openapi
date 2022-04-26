@@ -39,4 +39,4 @@ guesswork in calling the service.
 
 # To colaborate with Squad 5 please contact with
 
-Test@gft.com
+Test@gft.com   (Not valid email :D) 
