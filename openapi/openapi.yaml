@@ -35,7 +35,7 @@ paths:
   /pathItem:
     $ref: paths/path-item.yaml
   /pathItemWithExamples:
-    $ref: paths/path-item-with-examples.yaml
+    $ref: paths/path-item-with-examples.yaml 
 components:
   securitySchemes:
     main_auth:
